@@ -4,8 +4,12 @@ import AddButton from "./AddButton/AddButton.js";
 import TodoInput from "./TodoInput/TodoInput";
 import { useEffect, useState } from "react";
 import TodoDiv from "../styled/todo";
-import { getStorage, resetStorage } from "../services/localStorage";
-import {getDay } from "../utils/utilDate";
+import {
+  updateStorage,
+  getStorage,
+  resetStorage,
+} from "../services/localStorage";
+import { getDay } from "../utils/utilDate";
 function Todo() {
   const [list, setList] = useState([]);
 
@@ -52,17 +56,9 @@ function Todo() {
       });
     });
     const localTasks = JSON.parse(localStorage.getItem("todo_data"));
-    localTasks.tasks = localTasks.tasks.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          isCompleted: !item.isCompleted,
-        };
-      } else {
-        return item;
-      }
-    });
-    localStorage.setItem("todo_data", JSON.stringify(localTasks));
+    const item = localTasks.tasks.find((currTask) => currTask.id === id);
+    item.isCompleted = !item.isCompleted;
+    updateStorage(item, id);
   };
 
   return (

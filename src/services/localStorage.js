@@ -18,7 +18,18 @@ const resetStorage = () => {
     })
   );
 };
+const updateStorage = (newTask, id) => {
+  const localTasks = JSON.parse(localStorage.getItem("todo_data"));
+  localTasks.tasks = localTasks.tasks.map((currTask) => {
+    if (currTask.id === id) {
+      return newTask;
+    } else {
+      return currTask;
+    }
+  });
+  localStorage.setItem("todo_data", JSON.stringify(localTasks));
+};
 const getStorage = () => {
   return JSON.parse(localStorage.getItem("todo_data"));
 };
-export { addItemToStorage, resetStorage,getStorage };
+export { updateStorage, addItemToStorage, resetStorage, getStorage };
