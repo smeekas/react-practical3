@@ -1,7 +1,7 @@
 
 # react-practical-3
 
-## added functionality to react practical-3 such as
+## added functionality to Todo web app
 1. all tasks are stored in local storage.
 2. tasks will be updated if added any new.
 3. tasks will persist even if you refresh the window.
@@ -44,6 +44,6 @@
 ```
 
 ## App preview
-![screenshot](./public/images/ss1.png)
-![screenshot](./public/images/ss2.png)
-![screenshot](./public/images/ss3.png)
+![screenshot](./public/ss1.png)
+![screenshot](./public/ss2.png)
+![screenshot](./public/ss3.png)
