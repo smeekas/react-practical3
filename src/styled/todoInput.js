@@ -13,7 +13,6 @@ const TodoInputinput = styled(motion.input)`
 
   &.error {
     animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    // animation-iteration-count:infinite;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
@@ -45,4 +44,4 @@ const TodoInputinput = styled(motion.input)`
     }
   }
 `;
-export default TodoInputinput
+export default TodoInputinput;

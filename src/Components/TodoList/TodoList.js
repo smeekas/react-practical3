@@ -5,6 +5,7 @@ function TodoList(props) {
   const completeHandler = (id) => {
     props.completeHandler(id);
   };
+  
   return (
     <TodoListDiv >
       {props.list.length > 0 ? (

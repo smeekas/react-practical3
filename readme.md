@@ -1,7 +1,13 @@
 
-# react-practical-4
+# react-practical-3
 
-## UI part of todo app using styled components
+## added functionality to react practical-3 such as
+1. all tasks are stored in local storage.
+2. tasks will be updated if added any new.
+3. tasks will persist even if you refresh the window.
+4. press add button to show input field.
+5. press Enter to add task to list.
+6. press Esc to hide input field.
 
 ## Getting Started
 
@@ -10,13 +16,13 @@
 2. Clone the repo</br>
 
 ```sh
-  git clone https://github.com/smeekas/react-practical4/
+  git clone https://github.com/smeekas/react-practical3/
 ```
 
 3. change directory</br>
 
 ```sh
-  cd ./react-practical4
+  cd ./react-practical3
 ```
 
 4. Install dependency</br>
@@ -38,4 +44,6 @@
 ```
 
 ## App preview
-![screenshot](./public/images/todo_snap.png)
+![screenshot](./public/images/ss1.png)
+![screenshot](./public/images/ss2.png)
+![screenshot](./public/images/ss3.png)

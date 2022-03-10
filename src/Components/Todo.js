@@ -4,32 +4,34 @@ import AddButton from "./AddButton/AddButton.js";
 import TodoInput from "./TodoInput/TodoInput";
 import { useEffect, useState } from "react";
 import TodoDiv from "../styled/todo";
-
+import { getStorage, resetStorage } from "../services/localStorage";
+import {getDay } from "../utils/utilDate";
 function Todo() {
   const [list, setList] = useState([]);
+
   const addHandler = (newTask) => {
     setList((prev) => {
       return [...prev, newTask];
     });
   };
-  // const [curr, setCurr] = useState(new Date().getSeconds());
-  // let current=new Date().getMinutes();
+
   useEffect(() => {
-    // console.log(curr);
-    const data = JSON.parse(localStorage.getItem("todo_data"));
-    if (data && data.date === new Date().getMinutes()) {
+    const data = getStorage();
+    if (data && data.date === getDay()) {
       setList(data.tasks);
     } else {
-      localStorage.setItem(
-        "todo_data",
-        JSON.stringify({
-          date: new Date().getMinutes(),
-          tasks: [],
-        })
-      );
+      resetStorage();
     }
+    const interval = setInterval(() => {
+      if (getDay().toString() !== getStorage().date.toString()) {
+        window.location.reload();
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
-  
+
   const [showInputBox, setShowInputBox] = useState(false);
   const addButtonHandler = () => {
     setShowInputBox(true);
@@ -54,7 +56,7 @@ function Todo() {
       if (item.id === id) {
         return {
           ...item,
-          isCompleted: true,
+          isCompleted: !item.isCompleted,
         };
       } else {
         return item;

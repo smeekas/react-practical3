@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import TodoInputinput from "../../styled/todoInput";
-
+import { addItemToStorage } from "../../services/localStorage";
 function TodoInput(props) {
   const [task, setTask] = useState("");
   const [error, setError] = useState(false);
@@ -12,7 +12,6 @@ function TodoInput(props) {
 
   const enterEsc = (event) => {
     if (event.key === "Enter") {
-      //   console.log("entered");
       if (task.trim().length === 0) {
         setError(true);
         return;
@@ -22,14 +21,7 @@ function TodoInput(props) {
         value: task,
         isCompleted: false,
       };
-      const localTasks = JSON.parse(localStorage.getItem("todo_data"));
-      localStorage.setItem(
-        "todo_data",
-        JSON.stringify({
-          date: new Date().getMinutes(),
-          tasks: [...localTasks.tasks, newTask],
-        })
-      );
+      addItemToStorage(newTask);
       props.addHandler(newTask);
       setTask("");
     }
@@ -46,11 +38,12 @@ function TodoInput(props) {
         onKeyUp={enterEsc}
         type="text"
         value={task}
-        animate={{ y: 0, opacity: 1, }}
+        animate={{ y: 0, opacity: 1 }}
         initial={{
           y: 50,
           opacity: 0,
         }}
+        transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
       />
     </AnimatePresence>
   );
