@@ -9,6 +9,7 @@ function TodoInput(props) {
   const [error, setError] = useState(false);
   const inputHandler = (event) => {
     setError(false);
+    props.setError(false);
     setTask(event.target.value);
   };
 useEffect(()=>{
