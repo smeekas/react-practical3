@@ -44,6 +44,6 @@
 ```
 
 ## App preview
-![screenshot](./public/ss1.png)
-![screenshot](./public/ss2.png)
-![screenshot](./public/ss3.png)
+![screenshot](./public/s1.png)
+![screenshot](./public/s2.png)
+![screenshot](./public/s3.png)
