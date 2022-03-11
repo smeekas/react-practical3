@@ -10,6 +10,7 @@ const getDate = (type) => {
       return new Date().getDate();
     case "currentTime":
       return new Date();
+    default:break;
   }
 };
 

@@ -2,7 +2,7 @@ import TodoList from "./TodoList/TodoList";
 import TodoDate from "./TodoDate/TodoDate";
 import AddButton from "./AddButton/AddButton.js";
 import TodoInput from "./TodoInput/TodoInput";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import StyledTodo from "../styled/todo";
 import {
   updateStorage,
@@ -40,15 +40,15 @@ function Todo() {
   }, []);
 
   const [showInputBox, setShowInputBox] = useState(false);
-  const addButtonHandler = () => {
+  const addButtonHandler = useCallback(() => {
     setShowInputBox(true);
-  };
-  const errorHandler = (error) => {
+  },[]);
+  const errorHandler = useCallback((error) => {
     setError(error);
-  };
-  const closeButtonHandler = () => {
+  },[]);
+  const closeButtonHandler = useCallback(() => {
     setShowInputBox(false);
-  };
+  },[]);
   const completeHandler = (id) => {
     setList((prev) => {
       return prev.map((todoItem, index) => {

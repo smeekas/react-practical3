@@ -20,7 +20,7 @@ useEffect(()=>{
   return ()=>{
     clearTimeout(timeout)
   }
-},[error])
+},[error,props])
   const enterEsc = (event) => {
     if (event.key === "Enter") {
       if (task.trim().length === 0) {
@@ -39,6 +39,7 @@ useEffect(()=>{
     }
     if (event.keyCode === 27) {
       props.closeButtonHandler();
+      props.setError(false);
     }
   };
   return (
