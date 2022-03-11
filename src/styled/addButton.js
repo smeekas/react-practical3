@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-const AddButtonDiv = styled(motion.div)`
+export default  styled(motion.button)`
   border: 1px solid #51e4a6;
   position: absolute;
   bottom: -32px;
@@ -24,4 +24,3 @@ const AddButtonDiv = styled(motion.div)`
   }
 `;
 
-export default AddButtonDiv;

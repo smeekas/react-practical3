@@ -1,7 +1,9 @@
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import TodoInputinput from "../../styled/todoInput";
+import { useEffect, useState } from "react";
+import StyledTodoInput from "../../styled/todoInput";
 import { addItemToStorage } from "../../services/localStorage";
+
+
 function TodoInput(props) {
   const [task, setTask] = useState("");
   const [error, setError] = useState(false);
@@ -9,10 +11,19 @@ function TodoInput(props) {
     setError(false);
     setTask(event.target.value);
   };
-
+useEffect(()=>{
+  const timeout=setTimeout(()=>{
+    setError(false);
+    props.setError(false);
+  },3000)
+  return ()=>{
+    clearTimeout(timeout)
+  }
+},[error])
   const enterEsc = (event) => {
     if (event.key === "Enter") {
       if (task.trim().length === 0) {
+        props.setError(true);
         setError(true);
         return;
       }
@@ -31,7 +42,7 @@ function TodoInput(props) {
   };
   return (
     <AnimatePresence>
-      <TodoInputinput
+      <StyledTodoInput
         placeholder="your task.."
         className={error ? "error" : ""}
         onChange={inputHandler}
@@ -43,7 +54,7 @@ function TodoInput(props) {
           y: 50,
           opacity: 0,
         }}
-        transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+        transition={{ duration: 0.2, type: "spring", stiffness: 200 }}
       />
     </AnimatePresence>
   );

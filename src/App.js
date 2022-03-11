@@ -1,13 +1,7 @@
-import Todo from "./Components/Todo";
+import Todo from "./components/Todo";
+
 function App() {
-// document.addEventListener("keyup",(event)=>{
-//   console.log(event.key)
-// })
-  return (
-    <div>
-      <Todo />
-    </div>
-  );
+  return <Todo />;
 }
 
 export default App;

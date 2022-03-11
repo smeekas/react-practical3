@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-const TodoItemDiv = styled(motion.div)`
+export default styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,4 +10,4 @@ const TodoItemDiv = styled(motion.div)`
     return !props.completed ? "black" : "#C4C5CA";
   }};
 `;
-export default TodoItemDiv;
+

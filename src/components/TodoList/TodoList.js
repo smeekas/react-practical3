@@ -1,13 +1,14 @@
 import TodoItem from "../TodoItem/TodoItem";
-import TodoListDiv from "../../styled/todoList";
-
+import StyledTodoList from "../../styled/todoList";
+import StyledNoTask from "../../styled/noTask";
+import StyledNoTaskParagraph from "../../styled/noTaskParagraph";
 function TodoList(props) {
   const completeHandler = (id) => {
     props.completeHandler(id);
   };
-  
+
   return (
-    <TodoListDiv >
+    <StyledTodoList>
       {props.list.length > 0 ? (
         props.list.map((todoItem) => {
           return (
@@ -21,9 +22,9 @@ function TodoList(props) {
           );
         })
       ) : (
-        <p>no tasks.</p>
+        <StyledNoTask><StyledNoTaskParagraph initial={{y:-200}} animate={{y:0}}>No tasks !</StyledNoTaskParagraph></StyledNoTask>
       )}
-    </TodoListDiv>
+    </StyledTodoList>
   );
 }
 export default TodoList;

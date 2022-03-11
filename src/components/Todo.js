@@ -3,15 +3,18 @@ import TodoDate from "./TodoDate/TodoDate";
 import AddButton from "./AddButton/AddButton.js";
 import TodoInput from "./TodoInput/TodoInput";
 import { useEffect, useState } from "react";
-import TodoDiv from "../styled/todo";
+import StyledTodo from "../styled/todo";
 import {
   updateStorage,
   getStorage,
   resetStorage,
 } from "../services/localStorage";
-import { getDay } from "../utils/utilDate";
+import { getDate } from "../utils/utilDate";
+import StyledError from "../styled/error";
+
 function Todo() {
   const [list, setList] = useState([]);
+  const [error, setError] = useState(false);
 
   const addHandler = (newTask) => {
     setList((prev) => {
@@ -21,13 +24,13 @@ function Todo() {
 
   useEffect(() => {
     const data = getStorage();
-    if (data && data.date === getDay()) {
+    if (data && data.date === getDate("day")) {
       setList(data.tasks);
     } else {
       resetStorage();
     }
     const interval = setInterval(() => {
-      if (getDay().toString() !== getStorage().date.toString()) {
+      if (getDate("day").toString() !== getStorage().date.toString()) {
         window.location.reload();
       }
     }, 1000);
@@ -39,6 +42,9 @@ function Todo() {
   const [showInputBox, setShowInputBox] = useState(false);
   const addButtonHandler = () => {
     setShowInputBox(true);
+  };
+  const errorHandler = (error) => {
+    setError(error);
   };
   const closeButtonHandler = () => {
     setShowInputBox(false);
@@ -62,7 +68,7 @@ function Todo() {
   };
 
   return (
-    <TodoDiv>
+    <StyledTodo>
       <TodoDate />
 
       <TodoList
@@ -70,14 +76,26 @@ function Todo() {
         list={list}
         showInputBox={showInputBox}
       />
+
       {showInputBox && (
         <TodoInput
           addHandler={addHandler}
+          errorHandler={errorHandler}
+          setError={setError}
           closeButtonHandler={closeButtonHandler}
         />
       )}
+      {error && (
+        <StyledError
+          transition={{ duration: 0.2 }}
+          initial={{ x: "-90" }}
+          animate={{ x: 0 }}
+        >
+          enter your task
+        </StyledError>
+      )}
       {!showInputBox && <AddButton onClick={addButtonHandler} />}
-    </TodoDiv>
+    </StyledTodo>
   );
 }
 export default Todo;

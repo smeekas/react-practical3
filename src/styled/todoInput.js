@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-const TodoInputinput = styled(motion.input)`
+export default styled(motion.input)`
   width: 95%;
   outline: none;
   border: none;
@@ -44,4 +44,4 @@ const TodoInputinput = styled(motion.input)`
     }
   }
 `;
-export default TodoInputinput;
+

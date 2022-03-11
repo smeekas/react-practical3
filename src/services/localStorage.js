@@ -1,10 +1,10 @@
-import { getDay } from "../utils/utilDate";
+import { getDate } from "../utils/utilDate";
 const addItemToStorage = (newItem) => {
   const localTasks = JSON.parse(localStorage.getItem("todo_data"));
   localStorage.setItem(
     "todo_data",
     JSON.stringify({
-      date: getDay(),
+      date: getDate("day"),
       tasks: [...localTasks.tasks, newItem],
     })
   );
@@ -13,7 +13,7 @@ const resetStorage = () => {
   localStorage.setItem(
     "todo_data",
     JSON.stringify({
-      date: getDay(),
+      date: getDate("day"),
       tasks: [],
     })
   );

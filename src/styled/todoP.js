@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-const TodoP = styled.p`
+export default styled.p`
   flex: 1;
 
   overflow-wrap: anywhere;
 `;
 
-export default TodoP;
